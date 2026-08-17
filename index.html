@@ -22,31 +22,30 @@
     header {
       background: #1261a0;
       color: white;
-      padding: 18px 20px;
+      padding: 16px 20px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .top {
+      max-width: 1100px;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1100px;
-      margin: auto;
     }
 
     .logo {
-      font-size: 23px;
+      font-size: 22px;
       font-weight: bold;
     }
 
     .language {
-      background: white;
-      color: #1261a0;
+      padding: 9px 12px;
       border: none;
-      padding: 8px 12px;
       border-radius: 8px;
+      font-size: 14px;
     }
 
     .hero {
@@ -62,7 +61,6 @@
     }
 
     .hero p {
-      font-size: 16px;
       margin-bottom: 25px;
     }
 
@@ -104,7 +102,7 @@
 
     .categories {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 12px;
       margin-bottom: 40px;
     }
@@ -114,7 +112,7 @@
       padding: 20px 10px;
       text-align: center;
       border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 10px rgba(0,0,0,.06);
       cursor: pointer;
     }
 
@@ -137,16 +135,14 @@
       background: white;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
     }
 
-    .product-img {
-      height: 180px;
-      background: #e9eef3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 60px;
+    .product img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
     }
 
     .product-info {
@@ -171,7 +167,6 @@
     }
 
     .call-btn {
-      display: block;
       width: 100%;
       padding: 11px;
       border: none;
@@ -188,7 +183,7 @@
       padding: 30px;
       border-radius: 15px;
       text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
     }
 
     .sell-box button {
@@ -199,6 +194,7 @@
       background: #1261a0;
       color: white;
       font-weight: bold;
+      cursor: pointer;
     }
 
     footer {
@@ -213,10 +209,6 @@
       .hero h1 {
         font-size: 27px;
       }
-
-      .search button {
-        padding: 0 12px;
-      }
     }
   </style>
 </head>
@@ -225,84 +217,110 @@
 
 <header>
   <div class="top">
-    <div class="logo">🛒 Gambela Market</div>
 
-    <select class="language">
-      <option>English</option>
-      <option>አማርኛ</option>
-      <option>Anuak</option>
+    <div class="logo">
+      🛒 Gambela Market
+    </div>
+
+    <select class="language" id="languageSelect"
+            onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="am">አማርኛ</option>
+      <option value="anuak">Anuak</option>
     </select>
+
   </div>
 </header>
 
-<section class="hero">
-  <h1>Buy & Sell in Gambela</h1>
 
-  <p>
+<section class="hero">
+
+  <h1 id="heroTitle">
+    Buy & Sell in Gambela
+  </h1>
+
+  <p id="heroText">
     Find products and connect with local sellers.
   </p>
 
   <div class="search">
+
     <input
       type="text"
       id="searchInput"
       placeholder="Search products..."
     >
 
-    <button onclick="searchProducts()">
+    <button onclick="searchProducts()" id="searchButton">
       Search
     </button>
+
   </div>
+
 </section>
+
 
 <main class="container">
 
-  <h2 class="section-title">Categories</h2>
+  <h2 class="section-title" id="categoryTitle">
+    Categories
+  </h2>
 
   <div class="categories">
 
     <div class="category">
       <div class="icon">📱</div>
-      <p>Phones</p>
+      <p id="phones">Phones</p>
     </div>
 
     <div class="category">
       <div class="icon">👕</div>
-      <p>Clothes</p>
+      <p id="clothes">Clothes</p>
     </div>
 
     <div class="category">
       <div class="icon">🐄</div>
-      <p>Cattle</p>
+      <p id="cattle">Cattle</p>
     </div>
 
     <div class="category">
       <div class="icon">🍔</div>
-      <p>Food</p>
+      <p id="food">Food</p>
     </div>
 
     <div class="category">
       <div class="icon">🏠</div>
-      <p>Property</p>
+      <p id="property">Property</p>
     </div>
 
     <div class="category">
       <div class="icon">🚗</div>
-      <p>Vehicles</p>
+      <p id="vehicles">Vehicles</p>
     </div>
 
   </div>
 
 
-  <h2 class="section-title">Featured Products</h2>
+  <h2 class="section-title" id="featuredTitle">
+    Featured Products
+  </h2>
+
 
   <div class="products" id="products">
 
+
+    <!-- PHONE -->
+
     <div class="product">
-      <div class="product-img">📱</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+        alt="Smartphone"
+      >
 
       <div class="product-info">
-        <h3>Samsung Galaxy</h3>
+
+        <h3>Smartphone</h3>
 
         <div class="price">
           12,000 ETB
@@ -316,16 +334,25 @@
           class="call-btn"
           onclick="callSeller('0912345678')"
         >
-          📞 Call Seller
+          📞 <span class="callText">Call Seller</span>
         </button>
+
       </div>
+
     </div>
 
 
+    <!-- CLOTHES -->
+
     <div class="product">
-      <div class="product-img">👕</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+        alt="Clothes"
+      >
 
       <div class="product-info">
+
         <h3>Men's T-Shirt</h3>
 
         <div class="price">
@@ -340,16 +367,25 @@
           class="call-btn"
           onclick="callSeller('0923456789')"
         >
-          📞 Call Seller
+          📞 <span class="callText">Call Seller</span>
         </button>
+
       </div>
+
     </div>
 
 
+    <!-- CATTLE -->
+
     <div class="product">
-      <div class="product-img">🐄</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&w=800&q=80"
+        alt="Cattle"
+      >
 
       <div class="product-info">
+
         <h3>Healthy Cattle</h3>
 
         <div class="price">
@@ -364,16 +400,25 @@
           class="call-btn"
           onclick="callSeller('0934567890')"
         >
-          📞 Call Seller
+          📞 <span class="callText">Call Seller</span>
         </button>
+
       </div>
+
     </div>
 
 
+    <!-- FOOD -->
+
     <div class="product">
-      <div class="product-img">🍔</div>
+
+      <img
+        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
+        alt="Food"
+      >
 
       <div class="product-info">
+
         <h3>Local Food</h3>
 
         <div class="price">
@@ -388,9 +433,11 @@
           class="call-btn"
           onclick="callSeller('0945678901')"
         >
-          📞 Call Seller
+          📞 <span class="callText">Call Seller</span>
         </button>
+
       </div>
+
     </div>
 
   </div>
@@ -398,13 +445,15 @@
 
   <div class="sell-box">
 
-    <h2>Want to sell something?</h2>
+    <h2 id="sellTitle">
+      Want to sell something?
+    </h2>
 
-    <p>
+    <p id="sellText">
       Post your product and reach buyers in Gambela.
     </p>
 
-    <button onclick="postProduct()">
+    <button onclick="postProduct()" id="postButton">
       ➕ Post Your Product
     </button>
 
@@ -414,27 +463,156 @@
 
 
 <footer>
-  <p>© 2026 Gambela Market</p>
-  <p>Buy • Sell • Connect</p>
+
+  <p>
+    © 2026 Gambela Market
+  </p>
+
+  <p>
+    Buy • Sell • Connect
+  </p>
+
 </footer>
 
 
 <script>
 
-function callSeller(number) {
-  window.location.href = "tel:" + number;
+const translations = {
+
+  en: {
+    heroTitle: "Buy & Sell in Gambela",
+    heroText: "Find products and connect with local sellers.",
+    search: "Search",
+    searchPlaceholder: "Search products...",
+    categories: "Categories",
+    phones: "Phones",
+    clothes: "Clothes",
+    cattle: "Cattle",
+    food: "Food",
+    property: "Property",
+    vehicles: "Vehicles",
+    featured: "Featured Products",
+    call: "Call Seller",
+    sellTitle: "Want to sell something?",
+    sellText: "Post your product and reach buyers in Gambela.",
+    post: "➕ Post Your Product"
+  },
+
+  am: {
+    heroTitle: "በጋምቤላ ይግዙ እና ይሽጡ",
+    heroText: "እቃዎችን ይፈልጉ እና ከአካባቢ ሻጮች ጋር ይገናኙ።",
+    search: "ፈልግ",
+    searchPlaceholder: "እቃ ይፈልጉ...",
+    categories: "ምድቦች",
+    phones: "ስልኮች",
+    clothes: "ልብሶች",
+    cattle: "ከብቶች",
+    food: "ምግብ",
+    property: "ቤት / መሬት",
+    vehicles: "መኪናዎች",
+    featured: "ተመራጭ እቃዎች",
+    call: "ሻጩን ደውል",
+    sellTitle: "አንድ ነገር መሸጥ ይፈልጋሉ?",
+    sellText: "እቃዎን ይለጥፉ እና በጋምቤላ ያሉ ገዢዎችን ያግኙ።",
+    post: "➕ እቃዎን ይለጥፉ"
+  }
+
+};
+
+
+function changeLanguage() {
+
+  const language =
+    document.getElementById("languageSelect").value;
+
+  if (language === "anuak") {
+
+    alert(
+      "Anuak translation will be added after the translations are verified."
+    );
+
+    document.getElementById("languageSelect").value = "en";
+
+    return;
+  }
+
+  const t = translations[language];
+
+  document.getElementById("heroTitle").textContent =
+    t.heroTitle;
+
+  document.getElementById("heroText").textContent =
+    t.heroText;
+
+  document.getElementById("searchButton").textContent =
+    t.search;
+
+  document.getElementById("searchInput").placeholder =
+    t.searchPlaceholder;
+
+  document.getElementById("categoryTitle").textContent =
+    t.categories;
+
+  document.getElementById("phones").textContent =
+    t.phones;
+
+  document.getElementById("clothes").textContent =
+    t.clothes;
+
+  document.getElementById("cattle").textContent =
+    t.cattle;
+
+  document.getElementById("food").textContent =
+    t.food;
+
+  document.getElementById("property").textContent =
+    t.property;
+
+  document.getElementById("vehicles").textContent =
+    t.vehicles;
+
+  document.getElementById("featuredTitle").textContent =
+    t.featured;
+
+  document.querySelectorAll(".callText").forEach(
+    element => {
+      element.textContent = t.call;
+    }
+  );
+
+  document.getElementById("sellTitle").textContent =
+    t.sellTitle;
+
+  document.getElementById("sellText").textContent =
+    t.sellText;
+
+  document.getElementById("postButton").textContent =
+    t.post;
 }
 
+
+function callSeller(number) {
+
+  window.location.href = "tel:" + number;
+
+}
+
+
 function postProduct() {
+
   alert(
     "Seller registration will be added in the next version."
   );
+
 }
+
 
 function searchProducts() {
 
   const input =
-    document.getElementById("searchInput").value.toLowerCase();
+    document.getElementById("searchInput")
+      .value
+      .toLowerCase();
 
   const products =
     document.querySelectorAll(".product");
@@ -445,12 +623,17 @@ function searchProducts() {
       product.innerText.toLowerCase();
 
     if (text.includes(input)) {
+
       product.style.display = "block";
+
     } else {
+
       product.style.display = "none";
+
     }
 
   });
+
 }
 
 </script>
