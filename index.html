@@ -1,642 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambela Market - Buy & Sell Locally</title>
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e40af;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
 
-  <title>Gambela Market</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-    }
+        /* Header Style */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    header {
-      background: #1261a0;
-      color: white;
-      padding: 16px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .top {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .header-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
+        select {
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: none;
+            background-color: white;
+            color: var(--text-color);
+            font-weight: 500;
+            cursor: pointer;
+        }
 
-    .language {
-      padding: 9px 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-    }
+        .post-btn {
+            background-color: #ffffff;
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    .hero {
-      background: linear-gradient(135deg, #1261a0, #19a974);
-      color: white;
-      text-align: center;
-      padding: 55px 20px;
-    }
+        .post-btn:hover {
+            background-color: #f1f5f9;
+        }
 
-    .hero h1 {
-      font-size: 34px;
-      margin-bottom: 12px;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(29, 78, 216, 0.85), rgba(30, 64, 175, 0.85)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
 
-    .hero p {
-      margin-bottom: 25px;
-    }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
 
-    .search {
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
 
-    .search input {
-      flex: 1;
-      padding: 15px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-    }
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-    .search button {
-      background: #ff9f1c;
-      color: white;
-      border: none;
-      padding: 0 20px;
-      font-weight: bold;
-    }
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
 
-    .container {
-      max-width: 1100px;
-      margin: 35px auto;
-      padding: 0 20px;
-    }
+        .search-box button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-    .section-title {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 12px;
-      margin-bottom: 40px;
-    }
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--text-color);
+        }
 
-    .category {
-      background: white;
-      padding: 20px 10px;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,.06);
-      cursor: pointer;
-    }
+        /* Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
 
-    .category:hover {
-      transform: translateY(-3px);
-    }
+        .category-card {
+            background: var(--card-bg);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
 
-    .category .icon {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+        .category-card span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-    .product {
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,.08);
-    }
+        .category-card p {
+            font-weight: 600;
+        }
 
-    .product img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-    }
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
-    .product-info {
-      padding: 16px;
-    }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
 
-    .product-info h3 {
-      margin-bottom: 8px;
-    }
+        .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
 
-    .price {
-      color: #1261a0;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
+        .product-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
 
-    .location {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
+        .product-info {
+            padding: 1rem;
+        }
 
-    .call-btn {
-      width: 100%;
-      padding: 11px;
-      border: none;
-      border-radius: 8px;
-      background: #19a974;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
 
-    .sell-box {
-      background: white;
-      margin-top: 45px;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,.07);
-    }
+        .product-price {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
 
-    .sell-box button {
-      margin-top: 15px;
-      padding: 12px 22px;
-      border: none;
-      border-radius: 8px;
-      background: #1261a0;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .product-location {
+            font-size: 0.9rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
 
-    footer {
-      background: #17202a;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      margin-top: 50px;
-    }
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
 
-    @media (max-width: 500px) {
-      .hero h1 {
-        font-size: 27px;
-      }
-    }
-  </style>
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            header {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <div class="top">
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            🛒 Gambela Market
+        </div>
+        <div class="header-right">
+            <select id="languageSelect">
+                <option value="am">አማርኛ</option>
+                <option value="anuak">Anuak</option>
+                <option value="en">English</option>
+            </select>
+            <a href="#" class="post-btn">+ ፖስት አድርግ / Post</a>
+        </div>
+    </header>
 
-    <div class="logo">
-      🛒 Gambela Market
-    </div>
+    <!-- Hero / Search Section -->
+    <section class="hero">
+        <h1>በጋምቤላ ይግዙ እና ይሽጡ</h1>
+        <p>ለአካባቢው ማህበረሰብ የተዘጋጀ ፈጣን የገበያ ማዕከል</p>
+        <div class="search-box">
+            <input type="text" placeholder="ምርቶችን ይፈልጉ (예: ስልክ, አልባሳት...)">
+            <button>ፈልግ</button>
+        </div>
+    </section>
 
-    <select class="language" id="languageSelect"
-            onchange="changeLanguage()">
-      <option value="en">English</option>
-      <option value="am">አማርኛ</option>
-      <option value="anuak">Anuak</option>
-    </select>
-
-  </div>
-</header>
-
-
-<section class="hero">
-
-  <h1 id="heroTitle">
-    Buy & Sell in Gambela
-  </h1>
-
-  <p id="heroText">
-    Find products and connect with local sellers.
-  </p>
-
-  <div class="search">
-
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search products..."
-    >
-
-    <button onclick="searchProducts()" id="searchButton">
-      Search
-    </button>
-
-  </div>
-
-</section>
-
-
-<main class="container">
-
-  <h2 class="section-title" id="categoryTitle">
-    Categories
-  </h2>
-
-  <div class="categories">
-
-    <div class="category">
-      <div class="icon">📱</div>
-      <p id="phones">Phones</p>
-    </div>
-
-    <div class="category">
-      <div class="icon">👕</div>
-      <p id="clothes">Clothes</p>
-    </div>
-
-    <div class="category">
-      <div class="icon">🐄</div>
-      <p id="cattle">Cattle</p>
-    </div>
-
-    <div class="category">
-      <div class="icon">🍔</div>
-      <p id="food">Food</p>
-    </div>
-
-    <div class="category">
-      <div class="icon">🏠</div>
-      <p id="property">Property</p>
-    </div>
-
-    <div class="category">
-      <div class="icon">🚗</div>
-      <p id="vehicles">Vehicles</p>
-    </div>
-
-  </div>
-
-
-  <h2 class="section-title" id="featuredTitle">
-    Featured Products
-  </h2>
-
-
-  <div class="products" id="products">
-
-
-    <!-- PHONE -->
-
-    <div class="product">
-
-      <img
-        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
-        alt="Smartphone"
-      >
-
-      <div class="product-info">
-
-        <h3>Smartphone</h3>
-
-        <div class="price">
-          12,000 ETB
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Categories Section -->
+        <h2>ምድቦች / Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <span>📱</span>
+                <p>ስልክ / Phones</p>
+            </div>
+            <div class="category-card">
+                <span>👕</span>
+                <p>አልባሳት / Clothes</p>
+            </div>
+            <div class="category-card">
+                <span>🐄</span>
+                <p>ከብቶች / Cattle</p>
+            </div>
+            <div class="category-card">
+                <span>🍔</span>
+                <p>ምግብ / Food</p>
+            </div>
+            <div class="category-card">
+                <span>🏠</span>
+                <p>ቤት / Property</p>
+            </div>
+            <div class="category-card">
+                <span>🚗</span>
+                <p>ተሽከርካሪ / Vehicles</p>
+            </div>
         </div>
 
-        <div class="location">
-          📍 Gambela
+        <!-- Featured Products -->
+        <h2>ተወዳጅ ማስታወቂያዎች / Featured Ads</h2>
+        <div class="products-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" alt="Smartphone" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Samsung A14</div>
+                    <div class="product-price">8,500 ብር</div>
+                    <div class="product-location">📍 ጋምቤላ ከተማ / Gambela Town</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Clothes" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">ወንዶች ሸሚዝ / Men's Shirt</div>
+                    <div class="product-price">450 ብር</div>
+                    <div class="product-location">📍 ጋምቤላ ከተማ / Gambela Town</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&w=800&q=80" alt="Cattle" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">ጤናማ ከብት / Healthy Cow</div>
+                    <div class="product-price">25,000 ብር</div>
+                    <div class="product-location">📍 ኢታንግ / Itang</div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Food" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">የባህል ምግብ / Local Food</div>
+                    <div class="product-price">250 ብር</div>
+                    <div class="product-location">📍 ጋምቤላ ከተማ / Gambela Town</div>
+                </div>
+            </div>
+
         </div>
-
-        <button
-          class="call-btn"
-          onclick="callSeller('0912345678')"
-        >
-          📞 <span class="callText">Call Seller</span>
-        </button>
-
-      </div>
 
     </div>
 
-
-    <!-- CLOTHES -->
-
-    <div class="product">
-
-      <img
-        src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
-        alt="Clothes"
-      >
-
-      <div class="product-info">
-
-        <h3>Men's T-Shirt</h3>
-
-        <div class="price">
-          800 ETB
-        </div>
-
-        <div class="location">
-          📍 Gambela
-        </div>
-
-        <button
-          class="call-btn"
-          onclick="callSeller('0923456789')"
-        >
-          📞 <span class="callText">Call Seller</span>
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- CATTLE -->
-
-    <div class="product">
-
-      <img
-        src="https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?auto=format&fit=crop&w=800&q=80"
-        alt="Cattle"
-      >
-
-      <div class="product-info">
-
-        <h3>Healthy Cattle</h3>
-
-        <div class="price">
-          65,000 ETB
-        </div>
-
-        <div class="location">
-          📍 Gambela
-        </div>
-
-        <button
-          class="call-btn"
-          onclick="callSeller('0934567890')"
-        >
-          📞 <span class="callText">Call Seller</span>
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- FOOD -->
-
-    <div class="product">
-
-      <img
-        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
-        alt="Food"
-      >
-
-      <div class="product-info">
-
-        <h3>Local Food</h3>
-
-        <div class="price">
-          250 ETB
-        </div>
-
-        <div class="location">
-          📍 Gambela
-        </div>
-
-        <button
-          class="call-btn"
-          onclick="callSeller('0945678901')"
-        >
-          📞 <span class="callText">Call Seller</span>
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="sell-box">
-
-    <h2 id="sellTitle">
-      Want to sell something?
-    </h2>
-
-    <p id="sellText">
-      Post your product and reach buyers in Gambela.
-    </p>
-
-    <button onclick="postProduct()" id="postButton">
-      ➕ Post Your Product
-    </button>
-
-  </div>
-
-</main>
-
-
-<footer>
-
-  <p>
-    © 2026 Gambela Market
-  </p>
-
-  <p>
-    Buy • Sell • Connect
-  </p>
-
-</footer>
-
-
-<script>
-
-const translations = {
-
-  en: {
-    heroTitle: "Buy & Sell in Gambela",
-    heroText: "Find products and connect with local sellers.",
-    search: "Search",
-    searchPlaceholder: "Search products...",
-    categories: "Categories",
-    phones: "Phones",
-    clothes: "Clothes",
-    cattle: "Cattle",
-    food: "Food",
-    property: "Property",
-    vehicles: "Vehicles",
-    featured: "Featured Products",
-    call: "Call Seller",
-    sellTitle: "Want to sell something?",
-    sellText: "Post your product and reach buyers in Gambela.",
-    post: "➕ Post Your Product"
-  },
-
-  am: {
-    heroTitle: "በጋምቤላ ይግዙ እና ይሽጡ",
-    heroText: "እቃዎችን ይፈልጉ እና ከአካባቢ ሻጮች ጋር ይገናኙ።",
-    search: "ፈልግ",
-    searchPlaceholder: "እቃ ይፈልጉ...",
-    categories: "ምድቦች",
-    phones: "ስልኮች",
-    clothes: "ልብሶች",
-    cattle: "ከብቶች",
-    food: "ምግብ",
-    property: "ቤት / መሬት",
-    vehicles: "መኪናዎች",
-    featured: "ተመራጭ እቃዎች",
-    call: "ሻጩን ደውል",
-    sellTitle: "አንድ ነገር መሸጥ ይፈልጋሉ?",
-    sellText: "እቃዎን ይለጥፉ እና በጋምቤላ ያሉ ገዢዎችን ያግኙ።",
-    post: "➕ እቃዎን ይለጥፉ"
-  }
-
-};
-
-
-function changeLanguage() {
-
-  const language =
-    document.getElementById("languageSelect").value;
-
-  if (language === "anuak") {
-
-    alert(
-      "Anuak translation will be added after the translations are verified."
-    );
-
-    document.getElementById("languageSelect").value = "en";
-
-    return;
-  }
-
-  const t = translations[language];
-
-  document.getElementById("heroTitle").textContent =
-    t.heroTitle;
-
-  document.getElementById("heroText").textContent =
-    t.heroText;
-
-  document.getElementById("searchButton").textContent =
-    t.search;
-
-  document.getElementById("searchInput").placeholder =
-    t.searchPlaceholder;
-
-  document.getElementById("categoryTitle").textContent =
-    t.categories;
-
-  document.getElementById("phones").textContent =
-    t.phones;
-
-  document.getElementById("clothes").textContent =
-    t.clothes;
-
-  document.getElementById("cattle").textContent =
-    t.cattle;
-
-  document.getElementById("food").textContent =
-    t.food;
-
-  document.getElementById("property").textContent =
-    t.property;
-
-  document.getElementById("vehicles").textContent =
-    t.vehicles;
-
-  document.getElementById("featuredTitle").textContent =
-    t.featured;
-
-  document.querySelectorAll(".callText").forEach(
-    element => {
-      element.textContent = t.call;
-    }
-  );
-
-  document.getElementById("sellTitle").textContent =
-    t.sellTitle;
-
-  document.getElementById("sellText").textContent =
-    t.sellText;
-
-  document.getElementById("postButton").textContent =
-    t.post;
-}
-
-
-function callSeller(number) {
-
-  window.location.href = "tel:" + number;
-
-}
-
-
-function postProduct() {
-
-  alert(
-    "Seller registration will be added in the next version."
-  );
-
-}
-
-
-function searchProducts() {
-
-  const input =
-    document.getElementById("searchInput")
-      .value
-      .toLowerCase();
-
-  const products =
-    document.querySelectorAll(".product");
-
-  products.forEach(product => {
-
-    const text =
-      product.innerText.toLowerCase();
-
-    if (text.includes(input)) {
-
-      product.style.display = "block";
-
-    } else {
-
-      product.style.display = "none";
-
-    }
-
-  });
-
-}
-
-</script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Gambela Market. መብቱ በህግ የተጠበቀ ነው።</p>
+        <p>Buy • Sell • Connect in Gambela</p>
+    </footer>
 
 </body>
 </html>
