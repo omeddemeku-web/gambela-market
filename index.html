@@ -1,334 +1,45 @@
 <!DOCTYPE html>
 <html lang="am">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gambela Market Hub</title>
-    <style>
-        :root {
-            --primary: #1d4ed8;
-            --primary-dark: #1e40af;
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-        }
+<body style="margin: 0; padding: 0; font-family: sans-serif; background-color: #fefce8; color: #422006;">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.5;
-            padding-bottom: 5rem;
-        }
-
-        /* Header Style */
-        header {
-            background-color: white;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-
-        .user-profile-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .user-profile-header img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .user-info small {
-            color: #64748b;
-            display: block;
-            font-size: 0.8rem;
-        }
-
-        .user-info span {
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Product Card */
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .product-img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .product-body {
-            padding: 1.25rem;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 0.4rem;
-        }
-
-        .product-price {
-            color: var(--primary);
-            font-size: 1.15rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .seller-details {
-            font-size: 0.9rem;
-            color: #475569;
-            margin-bottom: 0.75rem;
-        }
-
-        .card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .phone-link {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .msg-btn {
-            background-color: #1e3a8a;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-weight: 500;
-        }
-
-        .meta-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .meta-row {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        /* Bottom Navigation Bar */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 0.6rem 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
-            border-top: 1px solid var(--border-color);
-            z-index: 1000;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #64748b;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .nav-item.active {
-            color: var(--primary);
-        }
-
-        .nav-item span.icon {
-            font-size: 1.3rem;
-            margin-bottom: 0.15rem;
-        }
-
-        .nav-item.post-icon span.icon {
-            background: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-top: -15px;
-            box-shadow: 0 4px 6px rgba(29, 78, 216, 0.3);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Header -->
-    <header>
-        <div class="logo">
-            <span style="font-size: 1.4rem;">🛒</span> Gambela Market Hub
-        </div>
-        <div class="user-profile-header">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Profile">
-            <div class="user-info">
-                <span>Deng Malek</span>
-                <small>0912 34 56 78</small>
-            </div>
-        </div>
+    <!-- Header (በባህል ቀለም የተሰራ) -->
+    <header style="background-color: #b45309; color: white; padding: 15px; text-align: center; border-bottom: 5px solid #15803d;">
+        <h1 style="margin: 0; font-size: 1.5rem;">🛒 የጋምቤላ ባህላዊ ገበያ / Gambela Cultural Market</h1>
     </header>
 
-    <!-- Main Products Grid -->
-    <div class="container">
+    <!-- ዋናው ክፍል -->
+    <div style="max-width: 800px; margin: 20px auto; padding: 10px;">
         
-        <!-- Product 1: Shirt -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80" alt="Men's Shirt" class="product-img">
-            <div class="product-body">
-                <div class="product-title">ወንዶች ሸሚዝ / Men's Shirt</div>
-                <div class="product-price">450 ብር / 450 ETB</div>
-                <div class="seller-details">
-                    <div>ሽጥ: Dawit</div>
-                </div>
-                <div class="card-actions">
-                    <a href="tel:0912334455" class="phone-link">📞 0912 33 44 55</a>
-                    <button class="msg-btn">💬 መልእክት Message</button>
-                </div>
-                <div class="meta-info">
-                    <div class="meta-row">📍 ጀምበላ ከተማ / Gambela Town</div>
-                    <div class="meta-row">🕒 ከ 2 ቀናት በፊት &nbsp;&nbsp;&nbsp; 2 days ago</div>
-                    <div class="meta-row">👁️ 58 ታይቷል &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 58 views</div>
-                </div>
+        <!-- ካርድ 1 -->
+        <div style="background-color: white; border: 3px solid #b45309; border-radius: 20px; padding: 15px; margin-bottom: 20px;">
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 15px;">
+            <div style="padding-top: 10px;">
+                <span style="background-color: #15803d; color: white; padding: 3px 10px; border-radius: 5px; font-size: 0.8rem;">የጋምቤላ ባህል</span>
+                <h2 style="color: #b45309; margin: 10px 0;">የባህል እደ-ጥበብ / Traditional Anuak Basketry</h2>
+                <p style="font-size: 1.2rem; font-weight: bold;">3,500 ብር</p>
+                <p style="font-size: 0.9rem;">ሻጭ: Aboy | 📞 0915 11 22 33</p>
+                <button style="background-color: #b45309; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-top: 10px;">መልእክት ላክ</button>
             </div>
         </div>
 
-        <!-- Product 2: Cow (Fixed with real cow image) -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80" alt="Healthy Cow" class="product-img">
-            <div class="product-body">
-                <div class="product-title">ጤናማ ላም / Healthy Cow</div>
-                <div class="product-price">25,000 ብር / 25,000 ETB</div>
-                <div class="seller-details">
-                    <div>ሽጥ: Ujulu</div>
-                </div>
-                <div class="card-actions">
-                    <a href="tel:0918778899" class="phone-link">📞 0918 77 88 99</a>
-                    <button class="msg-btn">💬 መልእክት Message</button>
-                </div>
-                <div class="meta-info">
-                    <div class="meta-row">📍 ኢታንግ / Itang</div>
-                    <div class="meta-row">🕒 ከ 5 ሰዓታት በፊት &nbsp;&nbsp; 5 hours ago</div>
-                    <div class="meta-row">👁️ 112 ታይቷል &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 112 views</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3: Traditional Basket -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=80" alt="Traditional Basket" class="product-img">
-            <div class="product-body">
-                <div class="product-title">የባህል እደ-ጥበብ / Traditional Anuak Basketry</div>
-                <div class="product-price">3,500 ብር / 3,500 ETB</div>
-                <div class="seller-details">
-                    <div>ሽጥ: Aboy</div>
-                </div>
-                <div class="card-actions">
-                    <a href="tel:0915112233" class="phone-link">📞 0915 11 22 33</a>
-                    <button class="msg-btn">💬 መልእክት Message</button>
-                </div>
-                <div class="meta-info">
-                    <div class="meta-row">📍 ጋምቤላ ክልል / Gambela Region</div>
-                    <div class="meta-row">🕒 ከ 1 ቀን በፊት &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 day ago</div>
-                    <div class="meta-row">👁️ 89 ታይቷል &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 89 views</div>
-                </div>
+        <!-- ካርድ 2 -->
+        <div style="background-color: white; border: 3px solid #b45309; border-radius: 20px; padding: 15px; margin-bottom: 20px;">
+            <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 15px;">
+            <div style="padding-top: 10px;">
+                <span style="background-color: #15803d; color: white; padding: 3px 10px; border-radius: 5px; font-size: 0.8rem;">የጋምቤላ ምርት</span>
+                <h2 style="color: #b45309; margin: 10px 0;">ጤናማ ላም / Healthy Cow</h2>
+                <p style="font-size: 1.2rem; font-weight: bold;">25,000 ብር</p>
+                <p style="font-size: 0.9rem;">ሻጭ: Ujulu | 📞 0918 77 88 99</p>
+                <button style="background-color: #b45309; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-top: 10px;">መልእክት ላክ</button>
             </div>
         </div>
 
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item active">
-            <span class="icon">🏠</span>
-            <span>Hub</span>
-        </a>
-        <a href="#" class="nav-item">
-            <span class="icon">🗂️</span>
-            <span>Categories</span>
-        </a>
-        <a href="#" class="nav-item post-icon">
-            <span class="icon">➕</span>
-            <span>Post</span>
-        </a>
-        <a href="#" class="nav-item">
-            <span class="icon">💬</span>
-            <span>Chat</span>
-        </a>
-        <a href="#" class="nav-item">
-            <span class="icon">👤</span>
-            <span>My Hub</span>
-        </a>
-    </nav>
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 20px; color: #b45309;">
+        <p>© 2026 Gambela Market Hub - ባህላችን ኩራታችን!</p>
+    </footer>
 
 </body>
 </html>
